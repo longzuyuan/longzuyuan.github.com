@@ -1,0 +1,105 @@
+body {
+	font-family: arial,sans-serif
+}
+#hplogo {
+	height: 230px;
+	margin: 0 auto;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	width: 450px
+}
+#logo-blockheads,#logo-blockheads-hold,#logo-goo,#logo-goo-hold,#logo-gumby,#logo-gumby-hold,#logo-gumby-loop,#logo-pokey,#logo-pokey-hold,#logo-prickle,#logo-prickle-hold {
+	cursor: pointer;
+	position: absolute
+}
+#logo-blockheads {
+	display: none;
+	height: 156px;
+	left: 31px;
+	top: 35px;
+	width: 135px
+}
+#logo-blockheads-hold {
+	background: url(../images/gumby11-initial-sprite.png) no-repeat 0 0;
+	height: 156px;
+	left: 31px;
+	top: 35px;
+	width: 135px
+}
+#logo-goo {
+	display: none;
+	height: 144px;
+	left: 227px;
+	top: 49px;
+	width: 67px
+}
+#logo-goo-hold {
+	background: url(../images/gumby11-initial-sprite.png) no-repeat -400px 0;
+	height: 144px;
+	left: 227px;
+	top: 49px;
+	width: 67px
+}
+#logo-gumby {
+	display: none;
+	height: 156px;
+	left: 277px;
+	top: 29px;
+	width: 98px
+}
+#logo-gumby-hold {
+	background: url(../images/gumby11-initial-sprite.png) no-repeat -682px 0;
+	height: 156px;
+	left: 277px;
+	top: 29px;
+	width: 98px
+}
+#logo-gumby-loop {
+	height: 156px;
+	left: 277px;
+	top: 29px;
+	width: 98px
+}
+#logo-pokey {
+	display: none;
+	height: 108px;
+	left: 354px;
+	top: 85px;
+	width: 75px
+}
+#logo-pokey-hold {
+	background: url(../images/gumby11-initial-sprite.png) no-repeat -534px 0;
+	height: 108px;
+	left: 354px;
+	top: 85px;
+	width: 75px
+}
+#logo-prickle {
+	display: none;
+	height: 102px;
+	left: 177px;
+	top: 75px;
+	width: 65px
+}
+#logo-prickle-hold {
+	background: url(../images/gumby11-initial-sprite.png) no-repeat -270px 0;
+	height: 102px;
+	left: 169px;
+	top: 75px;
+	width: 65px
+}
+#logo-tooltip {
+	display: none;
+	font: normal 9pt arial,sans-serif;
+	left: 68px;
+	padding: 2px 3px;
+	position: absolute;
+	top: 10px;
+	width: 350px;
+	-webkit-font-smoothing: antialiased;
+	zoom: 1
+}
+.fl {
+	-webkit-font-smoothing: antialiased
+}

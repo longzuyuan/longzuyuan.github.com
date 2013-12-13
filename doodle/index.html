@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+		<title>Google Doodles - 龙祖苑个人网站 Longzuyuan.cn</title>
+    <link rel="stylesheet" href="css.css"/>
+    <script type="text/javascript">
+    		function init() {
+    				var url = window.location.href;
+    				//下载页面
+    				if(url.indexOf("download") > 0) {
+    						document.getElementById('doodle-view').className = ""; 
+    						document.getElementById('doodle-download').className = "selected"; 
+    						document.getElementById('doodle-clokey').setAttribute("href", "./download/clokey.zip"); 
+    						document.getElementById('doodle-bday').setAttribute("href", "./download/bday.zip"); 
+    						document.getElementById('doodle-jump').setAttribute("href", "./download/jump.zip"); 
+    						document.getElementById('doodle-doctor').setAttribute("href", "./download/doctor.zip"); 
+    				}
+    		}
+    		window.onload = init; 
+    </script>
+	<body>
+		<div id="all-content" class="ltr no-modules">
+
+			<div id="top-content">
+
+				<h1>Google Doodles</h1> 
+				<div>喜欢Google Doodles的一些效果，欣佩Google工程师的代码水平。于是不忙的时候整理修改了一些，可在线浏览，并提供源代码供下载观摩，所有效果均是HTML/JS实现。</div>
+			</div>
+
+			<div id="secondary-content">
+
+			</div>
+
+			<ul id="doodle-site-navigation">
+				<li id="doodle-view" class="selected">
+					<a href="index.html">浏览Doodles</a>
+				</li>
+				<li id="doodle-download">
+					<a href="index.html?download">下载Doodles</a>
+				</li>
+
+			</ul>
+
+			<div id="main-content">
+
+				<ul id="doodle-list" class="thumbnail-list">
+					<li>
+						<a id="doodle-clokey" href="./clokey/index.htm">
+							<div class="doodle-image">
+							<img src="./clokey/images/gumby-2011-hp.jpg"></div>
+							<p class="run-date">Oct. 12, 2011</p>
+							<p>粘土互动动画</p>
+						</a>
+					</li>
+					<li>
+						<a id="doodle-bday" href="./bday/index.htm">
+							<div class="doodle-image">
+							<img src="./bday/loading.jpg"></div>
+							<p class="run-date">Sep. 27, 2013</p>
+							<p>敲糖果小游戏</p>
+						</a>
+					</li>
+					<li>
+						<a id="doodle-jump" href="./jump/index.htm">
+							<div class="doodle-image">
+							<img src="./jump/start.png"></div>
+							<p class="run-date">Oct. 22, 2013</p>
+							<p>跳伞动画</p>
+						</a>
+					</li>
+					<li>
+						<a id="doodle-doctor" href="./doctor/index.htm">
+							<div class="doodle-image">
+							<img src="./doctor/drwho13.png"></div>
+							<p class="run-date">Nov. 23, 2013</p>
+							<p>神秘博士</p>
+						</a>
+					</li>
+				</ul>
+
+				<noscript>
+					请使用带Javascript功能的浏览器！
+				</noscript>
+
+			</div>
+
+			<p id="footer">
+				<a href="http://longzuyuan.cn">
+				 返回我的首页</a>
+			</p>
+
+		</div>
+	</body>
+</html>

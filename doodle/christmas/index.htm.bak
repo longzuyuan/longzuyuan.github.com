@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+		<title>跳伞 - 216th Anniversary of the First Parachute Jump</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge"></head>
+	<body>
+		<center>
+			<style>#hplogo{background:url(./start.png) no-repeat;height:200px;outline:none;overflow:hidden;position:relative;width:700px;-moz-user-select:-moz-none;-ms-user-select:none;-webkit-tap-highlight-color:transparent;-webkit-user-select:none}</style>
+			<div id="hplogo" dir="ltr" tabindex="0" title="" style="background-image: none; background-position: initial initial; background-repeat: initial initial;">
+				<canvas id="hplogoc" width="700" height="200" style="cursor: default;"></canvas>
+			</div>
+			<script>(function(){window.google||(window.google={});google.doodle||(google.doodle={});google.doodle.url="#";google.doodle.shortlink="#"; if(!google.doodle||!google.doodle.loaded){var a=["google","doodle","loaded"],b=this;a[0]in b||!b.execScript||b.execScript("var "+a[0]);for(var c;a.length&&(c=a.shift());)a.length?b=b[c]?b[c]:b[c]={}:b[c]=!0;var d=document.createElement("script");d.src="./parachute-2.js";d.async=!0;document.body.appendChild(d)};})();</script>
+		</center>
+		<script src="./parachute-2.js" async=""></script>
+	</body>
+</html>

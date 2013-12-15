@@ -105,7 +105,7 @@
                         google.doodle.isInit = boolYes;
                         allIMG["logo-gumby-loop"].stopMouseEvent = boolYes;
                         k = 0;
-                        playAnimate()
+                        //playAnimate()
                     }
                     s = boolYes
                 }

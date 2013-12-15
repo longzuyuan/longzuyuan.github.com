@@ -5,7 +5,8 @@
         allButton = { //所有图片数组
             "button1": {
                 picture: "toolbar.png",
-                text: "A",
+                text: "工 作",
+                url: "work/",
                 left: 31,
                 top: 35,
                 width: 51,
@@ -26,7 +27,8 @@
             },
             "button2": {
                 picture: "toolbar.png",
-                text: "B",
+                text: "生 活",
+                url: "life/",
                 left: 31,
                 top: 35,
                 width: 51,
@@ -47,7 +49,8 @@
             },
             "button3": {
                 picture: "toolbar.png",
-                text: "C",
+                text: "项 目",
+                url: "project/",
                 left: 131,
                 top: 35,
                 width: 51,
@@ -68,7 +71,7 @@
             },
             "button4": {
                 picture: "toolbar.png",
-                text: "D",
+                text: "兴 趣",
                 left: 131,
                 top: 35,
                 width: 51,
@@ -89,7 +92,8 @@
             },
             "button5": {
                 picture: "toolbar.png",
-                text: "E",
+                text: "Doodle",
+                url: "doodle/",
                 left: 131,
                 top: 35,
                 width: 51,
@@ -110,7 +114,7 @@
             },
             "button6": {
                 picture: "toolbar.png",
-                text: "F",
+                text: "随 笔",
                 left: 131,
                 top: 35,
                 width: 51,
@@ -131,7 +135,7 @@
             },
             "button7": {
                 picture: "toolbar.png",
-                text: "G",
+                text: "其 它",
                 left: 131,
                 top: 35,
                 width: 51,
@@ -212,7 +216,10 @@
         },
         //单击事件
         clickEvent = function(divName) { 
-            
+            var btn = allButton[divName];
+            if(btn.url) {
+            	  window.location.href = "http://longzuyuan.cn/" + btn.url;
+            }
         },
         playAnimate = function() {
             if (long.isInit) {
@@ -271,17 +278,14 @@
 })();
 (function() {
     var boolYes = !0, boolNo = !1;
-    window.google = window.google || {};
-    window.google.ml = function() {};
-    //把所有 a 指向 #
-    for (var allTagA = document.getElementsByTagName("A"), i = 0; i < allTagA.length; ++i)
-       allTagA[i].href = "#";
-    google.nav || (google.nav = {});
-    google.nav.go = function() {};
+    window.longzy = window.longzy || {};
+    window.longzy.ml = function() {};
+    longzy.nav || (longzy.nav = {});
+    longzy.nav.go = function() {};
     
     var j;
-    //try {
-        google.doodle || (google.doodle = {});
+    try {
+        longzy.doodle || (longzy.doodle = {});
         var k, l, isIE = 0 <= navigator.userAgent.indexOf("MSIE"),
         allIMG = { //所有图片数组
             "logo-gumby-loop": {
@@ -294,8 +298,8 @@
                 positionY: 0,
                 stopMouseEvent: boolNo,
                 click: function() {
-                    if (!google.doodle.isInit) {
-                        google.doodle.isInit = boolYes;
+                    if (!longzy.doodle.isInit) {
+                        longzy.doodle.isInit = boolYes;
                         allIMG["logo-gumby-loop"].stopMouseEvent = boolYes;
                         k = 0;
                         playAnimate()
@@ -366,8 +370,8 @@
         var clickEvent = function(divName) {
             if (!allIMG[divName].stopMouseEvent) {
                 k = 0; (divName = l[divName]) && divName.start(void 0);
-                if (!google.doodle.isInit) {
-                    google.doodle.isInit = boolYes;
+                if (!longzy.doodle.isInit) {
+                    longzy.doodle.isInit = boolYes;
                     playAnimate()
                 }
             }
@@ -378,14 +382,14 @@
         },
         //播放动画
         playAnimate = function() {
-            if (google.doodle.isInit) {
+            if (longzy.doodle.isInit) {
                 for (var a in l) {
                     var f = l[a];
                     f && f.isPlaying() && f.animate()
                 }
-                if (++k < 370) google.doodle.timeout = window.setTimeout(playAnimate, 84);
+                if (++k < 370) longzy.doodle.timeout = window.setTimeout(playAnimate, 84);
                 else {
-                    google.doodle.isInit = boolNo;
+                    longzy.doodle.isInit = boolNo;
                     openMouseEvent()
                 }
             }
@@ -462,8 +466,8 @@
         //为objElement绑定事件，事件名:eventName，触发函数callFunction
         bindEvent = function(objElement, eventName, callFunction) {
             if (objElement) {
-                if (!google.doodle.p) google.doodle.p = [];
-                google.doodle.p.push(arguments);
+                if (!longzy.doodle.p) longzy.doodle.p = [];
+                longzy.doodle.p.push(arguments);
                 objElement.addEventListener ? objElement.addEventListener(eventName, callFunction, boolNo)
                 		 : objElement.attachEvent("on" + eventName, callFunction);
             }
@@ -474,21 +478,21 @@
         },
         //入口
         startClokey = function() {
-            if (google.rein && google.dstr && !google.doodle.B) {
-                google.doodle.B = boolYes;
-                google.rein.push(D);
-                google.dstr.push(F)
+            if (longzy.rein && longzy.dstr && !longzy.doodle.B) {
+                longzy.doodle.B = boolYes;
+                longzy.rein.push(D);
+                longzy.dstr.push(F)
             }
             //hplogo存在 并且 doodle没初始化
-            if (document.getElementById("hplogo") && !google.doodle.isInit) {
-                google.doodle.isInit = boolYes;
+            if (document.getElementById("hplogo") && !longzy.doodle.isInit) {
+                longzy.doodle.isInit = boolYes;
                 //是IE
                 if (isIE) try {
                     document.execCommand("BackgroundImageCache", boolNo, boolYes)
                 } catch(a) {}
                 k = 0;
-                google.doodle.isInit = boolNo;
-                google.doodle.timeout = null;
+                longzy.doodle.isInit = boolNo;
+                longzy.doodle.timeout = null;
                 l = {};
                 bindEvent(document, "mousemove", doNothing);
                 for (var imgDivId in allIMG) {
@@ -525,9 +529,9 @@
         };
         //开始
         startClokey();
-    //} catch(G) {
-    //    google.ml(G, boolNo, {
-    //        cause: "DOODLE"
-    //    })
-    //};
+    } catch(G) {
+        longzy.ml(G, boolNo, {
+            cause: "DOODLE"
+        })
+    };
 })();

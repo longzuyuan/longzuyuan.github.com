@@ -155,6 +155,16 @@ strong {
   padding: 1px 5px 0;
 }
 
+#welcome #about i {
+  font-style: normal  ;
+  font-family: '方正舒体', '华文行楷', '隶书';
+  font-size: 140%;
+  border-bottom: 1px dashed #62868E;
+  text-shadow: none;
+  padding: 1px 5px 0;
+  line-height: 45px;
+}
+
 #welcome #links {
   margin: 0 auto;
   margin-top: -70px;

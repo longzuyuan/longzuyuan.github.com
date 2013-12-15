@@ -99,6 +99,8 @@ strong {
   font-size: 450%;
   text-shadow: 3px 3px 0 #2E545A;
   color: #f5f5f5;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=135, Color='#2E545A')";
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=5, Direction=135, Color='#2E545A');
 }
 
 #welcome h2 {
@@ -134,6 +136,9 @@ strong {
   background-color: #f5f5f5;
   -moz-box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.3);
+	box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.3);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#CCCCCC')";
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#CCCCCC');
 }
 
 #welcome #about p {
@@ -151,7 +156,8 @@ strong {
 }
 
 #welcome #links {
-  margin: 40px auto;
+  margin: 0 auto;
+  margin-top: -70px;
 }
 
 #welcome #writings ul {
@@ -314,3 +320,9 @@ strong {
   text-align: center;
 }
 
+@font-face {
+  font-family: 'Reenie Beanie';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Reenie Beanie'), local('ReenieBeanie'), url(ReenieBeanie.woff) format('woff');
+}

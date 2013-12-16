@@ -72,6 +72,7 @@
             "button4": {
                 picture: "toolbar.png",
                 text: "ÐË È¤",
+                url: "interest/",
                 left: 131,
                 top: 35,
                 width: 51,
@@ -115,6 +116,7 @@
             "button6": {
                 picture: "toolbar.png",
                 text: "Ëæ ±Ê",
+                url: "writing/",
                 left: 131,
                 top: 35,
                 width: 51,
@@ -136,6 +138,7 @@
             "button7": {
                 picture: "toolbar.png",
                 text: "Æä Ëü",
+                url: "others/",
                 left: 131,
                 top: 35,
                 width: 51,

@@ -8,11 +8,22 @@ $(function() {
 	
 	var photos = $('#photos'),
 		ignoreClicks = false;
-		
-	var currentPhoto = 19;
+	
+	var currentIndex = 1;
 	var tmpelem = $('#photos li:last');
-	tmpelem.css('background-image', 'url(photos/'+currentPhoto+'.jpg)');
 	$('#photo_text').html(tmpelem.text());
+	if(tmpelem.css('background-image')=='none') tmpelem.css('background-image', 'url('+$("a",tmpelem).attr('href')+')');
+	tmpelem = tmpelem.prev();
+	if(tmpelem.css('background-image')=='none') tmpelem.css('background-image', 'url('+$("a",tmpelem).attr('href')+')');
+	$('.arrow.previous').css('display','none');
+	
+	$('#photos a').attr('title', '猛击加载下一张');
+	$('.arrow.next').attr('title', '猛击加载下一张');
+	$('.arrow.previous').attr('title', '猛击回到上一张');
+	$('#photos a').click(function() {
+		$('.arrow.next').trigger('click',[true]);
+		return false;
+	});
 
 	$('.arrow').click(function(e, simulated){
 		if(ignoreClicks){
@@ -42,11 +53,16 @@ $(function() {
 		
 		e.preventDefault();
 		
+		if(currentIndex ++ >= 15) currentIndex = 1;
+		if(currentIndex == 1) $('.arrow.previous').css('display','none');
+		else $('.arrow.previous').css('display','');
 		// The topmost element
 		var elem = $('#photos li:last');
-		if(currentPhoto == 1) currentPhoto = 20;
-		elem.prev().css('background-image', 'url(photos/'+(--currentPhoto)+'.jpg)');
 		$('#photo_text').html(elem.prev().text());
+		var prevElem = elem.prev();
+	  if(prevElem.css('background-image')=='none') prevElem.css('background-image', 'url('+$("a",prevElem).attr('href')+')');
+		var prePrevElem = prevElem.prev();
+	  if(prePrevElem.css('background-image')=='none') prePrevElem.css('background-image', 'url('+$("a",prePrevElem).attr('href')+')');
 		
 		// Apply a random exit animation
 		elem.addClass('animated')
@@ -69,11 +85,13 @@ $(function() {
 		
 		e.preventDefault();
 		
+		if(currentIndex -- < 1) currentIndex = 15;
+		if(currentIndex == 1) $('.arrow.previous').css('display','none');
+		else $('.arrow.previous').css('display','');
 		// The bottom-most element
 		var elem = $('#photos li:first');
-		if(currentPhoto == 19) currentPhoto = 0;
-		elem.css('background-image', 'url(photos/'+(++currentPhoto)+'.jpg)');
 		$('#photo_text').html(elem.text());
+	  if(elem.css('background-image')=='none') elem.css('background-image', 'url('+$("a",elem).attr('href')+')');
 		
 		// 随机动画移动到顶部
 		elem.appendTo(photos)

@@ -1,5 +1,6 @@
 $(function() {
 
+	var isIE = 0 <= navigator.userAgent.indexOf("MSIE");
 	var exits = ['fadeOut', 'fadeOutDown', 'fadeOutUpBig', 'bounceOut', 'bounceOutDown', 'hinge',
 				'bounceOutUp', 'bounceOutLeft', 'rotateOut', 'rotateOutUpLeft', 'lightSpeedOut', 'rollOut'];
 
@@ -68,6 +69,8 @@ $(function() {
 		elem.addClass('animated')
 			.addClass( exits[Math.floor(exits.length*Math.random())] );
 		
+		if(isIE) {elem.attr('class','').prependTo(photos);ignoreClicks = false;}
+		else
 		setTimeout(function(){
 			
 			// Reset the classes
@@ -98,6 +101,8 @@ $(function() {
 			.addClass('animated')
 			.addClass( entrances[Math.floor(entrances.length*Math.random())] );
 		
+		if(isIE) {elem.attr('class',''); ignoreClicks = false;}
+		else
 		setTimeout(function(){
 			elem.attr('class','');
 			// Íê³É£¬»Ö¸´µã»÷:

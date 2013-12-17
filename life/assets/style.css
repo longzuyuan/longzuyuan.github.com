@@ -59,7 +59,7 @@ section, footer, header{
 
 #photos{
 	margin:0 auto;
-	padding-top:20px;
+	padding-top:30px;
 	width:550px;
 	position:relative;
 }
@@ -67,7 +67,7 @@ section, footer, header{
 #photos li{
 	position:absolute;
 	width:550px;
-	height:450px;
+	height:413px;
 	overflow:hidden;
 	background-color:#fff;
 	box-shadow: 1px 1px 1px #ccc;

@@ -11,7 +11,7 @@
     var j;
     try {
         google.doodle || (google.doodle = {});
-        var k, l, isIE = 0 <= navigator.userAgent.indexOf("MSIE"),
+        var counter, allModels, isIE = 0 <= navigator.userAgent.indexOf("MSIE"),
         allIMG = { //所有图片数组
             "logo-blockheads": {
                 picture: "blockheads.jpg",
@@ -104,7 +104,7 @@
                     if (!google.doodle.isInit) {
                         google.doodle.isInit = boolYes;
                         allIMG["logo-gumby-loop"].stopMouseEvent = boolYes;
-                        k = 0;
+                        counter = 0;
                         playAnimate()
                     }
                     s = boolYes
@@ -248,7 +248,7 @@
         //单击事件
         var clickEvent = function(divName) {
             if (!allIMG[divName].stopMouseEvent) {
-                k = 0; (divName = l[divName]) && divName.start(void 0);
+                counter = 0; (divName = allModels[divName]) && divName.start(void 0);
                 if (!google.doodle.isInit) {
                     google.doodle.isInit = boolYes;
                     playAnimate()
@@ -262,18 +262,20 @@
         //播放动画
         playAnimate = function() {
             if (google.doodle.isInit) {
-                for (var a in l) {
-                    var f = l[a];
+                for (var a in allModels) {
+                    var f = allModels[a];
                     f && f.isPlaying() && f.animate()
                 }
-                if (++k < 370) google.doodle.timeout = window.setTimeout(playAnimate, 84);
+                //播放370次后暂停
+                if (++counter < 370) google.doodle.timeout = window.setTimeout(playAnimate, 84);
                 else {
                     google.doodle.isInit = boolNo;
                     openMouseEvent()
                 }
             }
         },
-        //
+        //frame模型，通过继承上面model的属性和方法，实现和添加自己的属性方法
+        //allModels里实际存的是frame模型，调用的也是它的方法
         frame = function(name, arr, b, e, i) {
             model.call(this, name);
             this.v = arr;
@@ -369,10 +371,10 @@
                 if (isIE) try {
                     document.execCommand("BackgroundImageCache", boolNo, boolYes)
                 } catch(a) {}
-                k = 0;
+                counter = 0;
                 google.doodle.isInit = boolNo;
                 google.doodle.timeout = null;
-                l = {};
+                allModels = {};
                 bindEvent(document, "mousemove", doNothing);
                 for (var imgDivId in allIMG) {
                     var arrOneImg = allIMG[imgDivId],
@@ -402,8 +404,8 @@
                 	new frame("logo-pokey", [0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 50, 51, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 56, 63, 64, 65, 63, 64, 65, 63, 66, 67, 0]), 
                 	new frame("logo-prickle", [0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 11, 11, 12, 13, 13, 13, 13, 13, 13, 12, 13, 13, 12, 13, 13, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 24, 24, 24, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 36, 37, 38, 39, 39, 39, 39, 39, 40, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 0])];
                 for (b = 0; oneFrame = allFrames[b++];) {
-                    if (l[oneFrame.id]) break;
-                    l[oneFrame.id] = oneFrame
+                    if (allModels[oneFrame.id]) break;
+                    allModels[oneFrame.id] = oneFrame
                 }
                 playAnimate();
                 clickHoldEvent("logo-gumby-loop", "logo-gumby-hold", boolYes)

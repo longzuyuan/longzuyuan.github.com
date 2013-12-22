@@ -9,11 +9,11 @@
                 url: "work/",
                 left: 31,
                 top: 35,
-                width: 51,
+                width: 52,
                 height: 37,
                 frames: 5,
                 positionX: 0,
-                positionY: 0,
+                positionY: 111,
                 stopMouseEvent: boolNo,
                 click: function() {
                     clickEvent("button1")
@@ -31,7 +31,7 @@
                 url: "life/",
                 left: 31,
                 top: 35,
-                width: 51,
+                width: 52,
                 height: 37,
                 frames: 5,
                 positionX: 0,
@@ -53,7 +53,7 @@
                 url: "project/",
                 left: 131,
                 top: 35,
-                width: 51,
+                width: 52,
                 height: 37,
                 frames: 5,
                 positionX: 0,
@@ -71,15 +71,15 @@
             },
             "button4": {
                 picture: "toolbar.png",
-                text: "ÐË È¤",
-                url: "interest/",
+                text: "²© ¿Í",
+                url: "http://blog.csdn.net/longzuyuan",
                 left: 131,
                 top: 35,
-                width: 51,
+                width: 52,
                 height: 37,
                 frames: 5,
                 positionX: 0,
-                positionY: 111,
+                positionY: 185,
                 stopMouseEvent: boolNo,
                 click: function() {
                     clickEvent("button4")
@@ -97,7 +97,7 @@
                 url: "doodle/",
                 left: 131,
                 top: 35,
-                width: 51,
+                width: 52,
                 height: 37,
                 frames: 5,
                 positionX: 0,
@@ -115,15 +115,15 @@
             },
             "button6": {
                 picture: "toolbar.png",
-                text: "Ëæ ±Ê",
-                url: "writing/",
+                text: "ÐË È¤",
+                url: "interest/",
                 left: 131,
                 top: 35,
-                width: 51,
+                width: 52,
                 height: 37,
                 frames: 5,
                 positionX: 0,
-                positionY: 185,
+                positionY: 0,
                 stopMouseEvent: boolNo,
                 click: function() {
                     clickEvent("button6")
@@ -141,7 +141,7 @@
                 url: "others/",
                 left: 131,
                 top: 35,
-                width: 51,
+                width: 52,
                 height: 37,
                 frames: 5,
                 positionX: 0,
@@ -221,7 +221,8 @@
         clickEvent = function(divName) { 
             var btn = allButton[divName];
             if(btn.url) {
-            	  window.location.href = "http://longzuyuan.cn/" + btn.url;
+            	  if(btn.url.indexOf("http:") >= 0) window.location.href = btn.url;
+            	  else window.location.href = "http://longzuyuan.cn/" + btn.url;
             }
         },
         playAnimate = function() {

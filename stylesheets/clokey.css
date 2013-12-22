@@ -10,7 +10,7 @@ body {
 	display:block; float:left; width:50px; height:37px; margin-left: 20px; background-image:url(../images/buttonbar.png);
 } 
 #button_bar span {
-	display:block; margin-top: 40px; color: #fff; text-align: right;
+	display:block; margin-top: 40px; color: #fff; text-align: center;
 } 
 #hplogo {
 	height: 156px;

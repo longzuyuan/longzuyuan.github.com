@@ -267,7 +267,7 @@ var Snake = {
 			clearInterval(Snake.animateTimer);
 			Snake.animateTimer = 0;
 			Snake.$overlay.show();
-			$("#map-msg").html("<br/>Paused").fadeIn();
+			$("#map-msg").html("<br/>暂停").fadeIn();
 		}
 	},
 
@@ -277,13 +277,13 @@ var Snake = {
 			Snake.newGame();
 		} else {
 			Snake.pause();
-			$("#map-msg").html('<br/>You Died<small><br/><a href="javascript:;" onclick="Snake.newGame(true)">Play again?</a></small>');
+			$("#map-msg").html('<br/>Game Over<small><br/><a href="javascript:;" onclick="Snake.newGame(true)">再试一次?</a></small>');
 		}
 	},
 
 	finishedGame : function(){
 		Snake.pause();
-		$("#map-msg").html('<br/>Well Done! You finished.<small><br/><a href="javascript:;" onclick="Snake.newGame(true)">Play again?</a></small>');
+		$("#map-msg").html('<br/>So Easy! 通关啦！<small><br/></small>');
 	},
 
 	Cherry : {	

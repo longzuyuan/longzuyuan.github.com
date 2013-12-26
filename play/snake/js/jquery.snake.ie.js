@@ -155,7 +155,6 @@ var Snake = {
 		}
 
 		keycode = Snake.cache.keyCode[1];
-		alert(keycode);
 		// adjust leading segment properties
 		if (keycode == 39) {
 			//right
@@ -201,7 +200,6 @@ var Snake = {
 		// check if snake has slithered into a wall obstacle
 		(Snake.in_obj(Snake.seg[0], Snake.wallseg)) && 
 			Snake.gameOver();
-			alert((Snake.in_obj(Snake.seg[0], seg)) + " " + Snake.in_obj(Snake.seg[0], Snake.wallseg) + ":" + Snake.seg[0] + "-"+seg + "-"+Snake.wallseg);
 
 		// check if cherries eaten match total: finished level.. advance to next level
 		(Snake.cherriesEaten == Level[Snake.level][0].cherries) &&
@@ -343,7 +341,6 @@ var Snake = {
 	in_obj : function(obj_needle, obj_haystack) {
 		for(var i in obj_haystack) {
 			if (obj_haystack[i].left === obj_needle.left && obj_haystack[i].top === obj_needle.top){
-				alert(obj_haystack[i].left +"-"+ obj_needle.left +" "+ obj_haystack[i].top  +"-"+  obj_needle.top);
 				return true;
 			}
 		}

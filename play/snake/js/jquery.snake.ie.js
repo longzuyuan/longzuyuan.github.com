@@ -61,7 +61,7 @@ var Snake = {
 		// set initial speed
 		Snake.speed = Level[Snake.level][0].speed;
 		// show the cherry, and start the animation
-		Snake.$cherry.fadeIn(function(){
+		Snake.$cherry.fadeIn(function(){alert('a');
 			Snake.animateTimer = setInterval(Snake.animate, Snake.speed);			
 		});
 	},
@@ -122,7 +122,7 @@ var Snake = {
 						Snake.seg[i] = $('<span class="snake '+i+'"></span>').appendTo(Snake.$map);
 						Snake.seg[i].top = Snake.seg[i].left = 0;
 					}
-				alert('a');
+				
 					// start animation
 					setTimeout(function(){
 						// reset direction

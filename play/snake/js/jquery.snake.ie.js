@@ -61,8 +61,9 @@ var Snake = {
 		// set initial speed
 		Snake.speed = Level[Snake.level][0].speed;
 		// show the cherry, and start the animation
-		Snake.$cherry.fadeIn();
-			Snake.animateTimer = setTimeout(Snake.animate, 100);		
+		Snake.$cherry.fadeIn(function(){
+			Snake.animateTimer = setInterval(Snake.animate, Snake.speed);			
+		});
 	},
 	
 	newGame : function(reset) {
@@ -139,7 +140,7 @@ var Snake = {
 		for(var i=1;i<Snake.seg.length;i++) {
 			Snake.seg[i].top = Snake.seg[(i==Snake.seg.length-1?0:i+1)].top;
 			Snake.seg[i].left = Snake.seg[(i==Snake.seg.length-1?0:i+1)].left;
-		}alert('b');
+		}
 
 		var keycode = Snake.cache.keyCode;
 		if (
@@ -199,6 +200,7 @@ var Snake = {
 		// check if snake has slithered into a wall obstacle
 		(Snake.in_obj(Snake.seg[0], Snake.wallseg)) && 
 			Snake.gameOver();
+			alert((Snake.in_obj(Snake.seg[0], seg)) + " " + Snake.in_obj(Snake.seg[0], Snake.wallseg + ":" + Snake.seg[0] + "-"+seg + "-"+Snake.wallseg);
 
 		// check if cherries eaten match total: finished level.. advance to next level
 		(Snake.cherriesEaten == Level[Snake.level][0].cherries) &&
@@ -207,8 +209,7 @@ var Snake = {
 		// reposition snake segments on map
 		for(var i=0;i<Snake.seg.length;i++) {
 			Snake.seg[i].css({top:Snake.seg[i].top+"px",left:Snake.seg[i].left+"px",display:"block"});
-		}		
-			Snake.animateTimer = setTimeout(Snake.animate, 100);						
+		}						
 	},
 			
 	advance : function(val) {

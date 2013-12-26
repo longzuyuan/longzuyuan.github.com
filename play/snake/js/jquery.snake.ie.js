@@ -62,7 +62,7 @@ var Snake = {
 		Snake.speed = Level[Snake.level][0].speed;
 		// show the cherry, and start the animation
 		Snake.$cherry.fadeIn();
-			Snake.animateTimer = setInterval(Snake.animate, 100);		
+			Snake.animateTimer = setTimeout(Snake.animate, 100);		
 	},
 	
 	newGame : function(reset) {
@@ -207,7 +207,8 @@ var Snake = {
 		// reposition snake segments on map
 		for(var i=0;i<Snake.seg.length;i++) {
 			Snake.seg[i].css({top:Snake.seg[i].top+"px",left:Snake.seg[i].left+"px",display:"block"});
-		}						
+		}		
+			Snake.animateTimer = setTimeout(Snake.animate, 100);						
 	},
 			
 	advance : function(val) {

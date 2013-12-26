@@ -25,8 +25,8 @@ var Snake = {
 
 		// build map
 		Snake.$map = $("#map1");
-		Snake.$map.width = Snake.$map.innerWidth();
-		Snake.$map.height = Snake.$map.innerHeight();
+		Snake.$map.width = 402;
+		Snake.$map.height = 402;
 		
 		// build and prepend overlay to map
 		Snake.$overlay = $('<div id="overlay"></div>').hide().prependTo(Snake.$map);
@@ -155,6 +155,7 @@ var Snake = {
 		}
 
 		keycode = Snake.cache.keyCode[1];
+		alert(keycode);
 		// adjust leading segment properties
 		if (keycode == 39) {
 			//right

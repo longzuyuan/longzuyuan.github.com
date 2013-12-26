@@ -1,9 +1,3 @@
-/*
- *
- * Filename:	common.js
- * Developer:	Richard Willis
- *
- */
 
 $(function(){
 	// FF2/Mac Opacity Bug

@@ -342,6 +342,7 @@ var Snake = {
 	in_obj : function(obj_needle, obj_haystack) {
 		for(var i in obj_haystack) {
 			if (obj_haystack[i].left === obj_needle.left && obj_haystack[i].top === obj_needle.top){
+				alert(obj_haystack[i].left +"-"+ obj_needle.left +" "+ obj_haystack[i].top  +"-"+  obj_needle.top);
 				return true;
 			}
 		}

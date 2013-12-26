@@ -200,7 +200,7 @@ var Snake = {
 		// check if snake has slithered into a wall obstacle
 		(Snake.in_obj(Snake.seg[0], Snake.wallseg)) && 
 			Snake.gameOver();
-			alert((Snake.in_obj(Snake.seg[0], seg)) + " " + Snake.in_obj(Snake.seg[0], Snake.wallseg + ":" + Snake.seg[0] + "-"+seg + "-"+Snake.wallseg);
+			alert((Snake.in_obj(Snake.seg[0], seg)) + " " + Snake.in_obj(Snake.seg[0], Snake.wallseg) + ":" + Snake.seg[0] + "-"+seg + "-"+Snake.wallseg);
 
 		// check if cherries eaten match total: finished level.. advance to next level
 		(Snake.cherriesEaten == Level[Snake.level][0].cherries) &&

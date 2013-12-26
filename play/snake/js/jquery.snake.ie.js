@@ -122,14 +122,14 @@ var Snake = {
 						Snake.seg[i] = $('<span class="snake '+i+'"></span>').appendTo(Snake.$map);
 						Snake.seg[i].top = Snake.seg[i].left = 0;
 					}
-				
+				alert('a');
 					// start animation
-					//setTimeout(function(){
+					setTimeout(function(){
 						// reset direction
 						Snake.cache.keyCode[0] = 0;
 						Snake.cache.keyCode[1] = 39;
 						Snake.start();
-					//}, 1000);
+					}, 1000);
 				});
 			}, 2500);
 		});

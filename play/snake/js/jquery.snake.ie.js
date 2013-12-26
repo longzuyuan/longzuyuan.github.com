@@ -140,7 +140,7 @@ var Snake = {
 		for(var i=1;i<Snake.seg.length;i++) {
 			Snake.seg[i].top = Snake.seg[(i==Snake.seg.length-1?0:i+1)].top;
 			Snake.seg[i].left = Snake.seg[(i==Snake.seg.length-1?0:i+1)].left;
-		}
+		}alert('b');
 
 		var keycode = Snake.cache.keyCode;
 		if (

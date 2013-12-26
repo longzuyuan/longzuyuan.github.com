@@ -124,12 +124,12 @@ var Snake = {
 					}
 				
 					// start animation
-					//setTimeout(function(){
+					setTimeout(function(){
 						// reset direction
 						Snake.cache.keyCode[0] = 0;
 						Snake.cache.keyCode[1] = 39;
 						Snake.start();
-					//}, 1000);
+					}, 1000);
 				});
 			}, 2500);
 		});

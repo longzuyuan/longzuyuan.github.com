@@ -62,6 +62,7 @@ var Snake = {
 		Snake.speed = Level[Snake.level][0].speed;
 		// show the cherry, and start the animation
 		Snake.$cherry.fadeIn(function(){
+				alert('b');
 			Snake.animateTimer = setInterval(Snake.animate, Snake.speed);			
 		});
 	},
@@ -122,20 +123,21 @@ var Snake = {
 						Snake.seg[i] = $('<span class="snake '+i+'"></span>').appendTo(Snake.$map);
 						Snake.seg[i].top = Snake.seg[i].left = 0;
 					}
-				
+				alert('a');
 					// start animation
-					setTimeout(function(){
+					//setTimeout(function(){
 						// reset direction
 						Snake.cache.keyCode[0] = 0;
 						Snake.cache.keyCode[1] = 39;
 						Snake.start();
-					}, 1000);
+					//}, 1000);
 				});
 			}, 2500);
 		});
 	},
 			
 	animate : function() {			
+				alert('c');
 		// adjust segment position list	 					
 		for(var i=1;i<Snake.seg.length;i++) {
 			Snake.seg[i].top = Snake.seg[(i==Snake.seg.length-1?0:i+1)].top;

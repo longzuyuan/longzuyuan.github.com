@@ -432,6 +432,9 @@ $(function(){
 		Snake.newGame(true);
 	});
 
+	$(document).focus(function(){
+	  $("#map1").focus();
+	});
 });
 
 /* end of file */

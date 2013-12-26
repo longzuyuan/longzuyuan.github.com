@@ -11,7 +11,7 @@
 var Snake = {
 		
 	$map : {}, $cherry : {}, $overlay : {}, seg : {}, wallseg : {}, cache : {},	
-	cacheimages : ['./img/snake/cherry.jpg'], 
+	cacheimages : ['../img/snake/cherry.jpg'], 
 	animateTimer : 0, score : 0, grid : 0, level : 1, lives : 3, speed : 0, cherriesEaten : 0,
 	wall : 0, // are the outer map walls an obsticle?
 
@@ -97,8 +97,8 @@ var Snake = {
 		Snake.$cherry.hide();
 
 		// update map message	
-		$("#map-msg").hide().html('第'+Snake.level+'关<br/>吃<strong>'+Level[Snake.level][0].cherries+'</strong>个<small><br/>'+
-			'<small style="font-size:80%">(还剩<strong>'+Snake.lives+'</strong>'+(Snake.lives>1?'':'')+'次机会)</small></small>'
+		$("#map-msg").hide().html('Level '+Snake.level+' <br/>Eat <strong>'+Level[Snake.level][0].cherries+'</strong> cherries<small><br/>'+
+			'<small style="font-size:80%"><strong>('+Snake.lives+'</strong> '+(Snake.lives>1?'lives':'life')+' remaining)</small></small>'
 			).fadeIn(500, function(){
 
 			setTimeout(function(){
@@ -277,7 +277,7 @@ var Snake = {
 			clearInterval(Snake.animateTimer);
 			Snake.animateTimer = 0;
 			Snake.$overlay.show();
-			$("#map-msg").html("<br/>暂停").fadeIn();
+			$("#map-msg").html("<br/>Paused").fadeIn();
 		}
 	},
 
@@ -287,13 +287,13 @@ var Snake = {
 			Snake.newGame();
 		} else {
 			Snake.pause();
-			$("#map-msg").html('<br/>木有了:(<small><br/><a href="javascript:;" onclick="Snake.newGame(true)">再试一次?</a></small>');
+			$("#map-msg").html('<br/>You Died<small><br/><a href="javascript:;" onclick="Snake.newGame(true)">Play again?</a></small>');
 		}
 	},
 
 	finishedGame : function(){
 		Snake.pause();
-		$("#map-msg").html('<br/>哦耶！通关啦！<small><br/><a href="http://longzuyuan.cn" target="_blank">Longzuyuan.cn</a></small>');
+		$("#map-msg").html('<br/>Well Done! You finished.<small><br/><a href="javascript:;" onclick="Snake.newGame(true)">Play again?</a></small>');
 	},
 
 	Cherry : {	

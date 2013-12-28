@@ -1,0 +1,534 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+	<title>飞机通道 - 小游戏</title>
+  <script type="text/javascript" src="./assets/jquery.js"></script>
+  <script src="./assets/floating-frame.js" type="text/javascript"></script>
+  
+  <style type="text/css" media="screen">
+    body {
+      background:#000;
+      color:#fafafa;
+      font-family:Consolas, "Bitstream Vera Sans Mono", monospace;
+      font-size:16px;
+      height:100%;
+      margin:0;
+      padding:0;
+      width:100%;
+    }
+    a { 
+    	color:#fff; 
+    }
+    fieldset {
+      border:none;
+    }
+    ul {
+      margin:10px 0;
+      padding:0;
+    }
+    li {
+      margin:0;
+      padding:0;
+    }
+    table {
+      margin:8px auto;
+    }
+    caption {
+      margin:0 auto;
+    }
+    th, td {
+      padding:2px 4px;
+    }
+    th {
+      text-align:right;
+    }
+    td {
+      text-align:left;
+    }
+    #tunnel {
+      border:1px solid #fafafa;
+      cursor:crosshair;
+      height:500px;
+      margin:40px auto 20px;
+      position:relative;
+      width:500px;
+    }
+    #info { 
+      margin:0 auto 20px;
+      width:500px;
+      text-align:right;
+    }
+    #info_score {
+      float:left;
+    }
+    #ship {
+      position:absolute;
+      top:450px;
+      left:234px;
+    }
+    .left_wall {
+      display:none;
+      position:absolute;
+      top:0;
+      left:80px;
+    }
+    .right_wall {
+      display:none;
+      position:absolute;
+      top:0;
+      left:400px;
+    }
+    .display, .message {
+      background:#222;
+      color:#fafafa;
+      cursor:pointer;cursor:hand;
+      display:none;
+      font-weight:bold;
+      text-align:center;
+      text-transform:uppercase;
+      width:100%;
+      z-index:3;
+    }
+    .display {
+      line-height:1.4;
+      padding:14px 0;
+      margin-top:28px;
+    }
+    .message {
+      line-height:2.0;
+      position:absolute;
+      top:50%;
+      margin-top:-16px;   
+    }
+    #welcome {
+      z-index:4;
+    }
+    #game_over {
+      padding-top:14px;
+      z-index:5;
+    }
+    #score_table {
+      z-index:4;
+    }
+    #high_score {
+      cursor:default;
+    }
+  </style>
+  
+  <script type="text/javascript">
+  
+    /* secure object for holding private game variables */
+    function secureGame() {
+      
+      var that = this;
+      
+      var alive = true; /* player alive or dead */
+      
+      function playerKill() {
+        alive = false; return true;
+      }
+      
+      function lifeCheck() {
+        return alive;
+      }
+      
+      this.killPlayer = function () {
+        playerKill(); return true;
+      }
+      
+      this.checkLife = function () {
+        return lifeCheck();
+      }
+      
+      var score = 0; /* total score */
+      
+      function scoreGet() {
+        return score;
+      }
+      
+      function scoreInc() {
+        if(alive) { score++; } return true;
+      }
+      
+      this.getScore = function() {
+        return scoreGet();
+      }
+      
+      this.incScore = function() {
+        scoreInc(); return true;
+      }
+      
+      var tunnel_width = 320;
+      
+      function tunnelShrink() {
+        tunnel_width-=20; return true;
+      }
+      
+      function tunnelWidth() {
+        return tunnel_width;
+      }
+      
+      this.shrinkTunnel = function() {
+        tunnelShrink(); return true;
+      }
+      
+      this.widthTunnel = function() {
+        return tunnelWidth();
+      }
+      
+    }
+    
+    /* alive = 1; // game state */
+    
+    var bg_val = 0; // background scroll position
+    
+    var rail_left = 0; // left edge of game container
+    
+    var rail_right = 500; // right edge of game container
+    
+    var ship_x = 234; // starting position of ship
+    
+    var pos_x = 234; // starting position of center of movement
+    
+    var c_s = 0; // counter for score update
+    
+    var c_r = 0; // counter for random tunnel update
+    
+    var c_w = 0; // counter for wall width update
+    
+    /* score = 0; // total score */
+    
+    var t_state = 0; // tunnel movement, 0 = left, 1 = right
+    
+    left_wall = new Array(20);
+    
+    right_wall = new Array(20);
+    
+    /* tunnel_width = 320; // width between walls */
+    
+    // initiate variables, arrays
+    function initTunnel() {
+    
+      tunnelGame = new secureGame();
+      
+      if('object' == typeof console) {
+        console.warn("No cheating!");
+      }
+      
+      rail_left = document.getElementById('tunnel').offsetLeft;
+      
+      rail_right += rail_left;
+      
+      y = 0;
+      for(y=0;y<20;y++) {
+        left_wall[y]=80;
+        right_wall[y]=400;
+      }
+      
+      $('img.left_wall').each(function(i){
+        y = i*25;
+        $(this).css('top',''+y+'px');
+        $(this).css('display','block');
+      });
+      
+      $("img.right_wall").each(function(i){
+        y = i*25;
+        $(this).css('top',''+y+'px');
+        $(this).css('display','block');
+      });
+      
+      $('div#score_table').click(function(){
+      
+        $('table').remove('#high_scores');
+        
+        $('div#score_table').css('display','none');
+        
+        restartTunnel();
+        
+        updateTunnel();
+        
+      });      
+      
+    }
+    
+    function restartTunnel() {
+    
+      tunnelGame = new secureGame();
+      
+      if('object' == typeof console) {
+        console.warn("No cheating!");
+      }
+      
+      ship_x = 234;
+      
+      c_s = 0;
+      
+      c_r = 0;
+      
+      c_w = 0;
+      
+      $('span#score').text(''+0);
+      
+      $('img#ship').css('left',ship_x+'px');
+      
+      y = 0;
+      for(y=0;y<20;y++) {
+        left_wall[y]=80;
+        right_wall[y]=400;
+      }
+      
+      $('img#ship').fadeIn('slow');
+      
+      $('img.left_wall').each(function(i){
+        y = i*25;
+        $(this).css('top',''+y+'px');
+        $(this).css('display','block');
+      });
+      
+      $("img.right_wall").each(function(i){
+        y = i*25;
+        $(this).css('top',''+y+'px');
+        $(this).css('display','block');
+      });
+      
+    }
+    
+    // main game logic
+    function updateTunnel() {
+      
+      /* scrolling background */
+      bg_val=bg_val+2;
+      
+      if(bg_val>20) bg_val = 0;
+      
+      $('div#tunnel').css('background-position','50% '+bg_val+'px');
+      
+      /* moving ship according to mouse */
+      if(ship_x+32<500) {
+        if(ship_x+46<pos_x) ship_x+=4;
+        else if(ship_x+16<pos_x) ship_x+=2;
+      }
+      if(ship_x>0) {
+        if(ship_x-14>pos_x) ship_x-=4;
+        else if(ship_x+16>pos_x) ship_x-=2;
+      }
+      
+      $('img#ship').css('left',ship_x+'px');
+      
+      /* random movement of tunnel*/
+      c_r++;
+      
+      if(c_r>60) {
+        c_r = 0;
+        t_state = Math.floor(Math.random()*2); 
+      }
+      
+      if(left_wall[0]<10) {
+        // hitting left edge, must move right
+        t_state = 1;
+      }
+      else if(right_wall[0]>470) {
+        // hitting right edge, must move left
+        t_state = 0;
+      }
+      
+      y = 0;
+      for(y=20;y>0;y--) {
+        left_wall[y] = left_wall[y-1];
+        right_wall[y] = right_wall[y-1];
+      }      
+      
+      if(t_state==0) {
+        left_wall[0]-=3;
+      }
+      if(t_state==1) {
+        left_wall[0]+=3;
+      }
+      
+      right_wall[0] = left_wall[0] + tunnelGame.widthTunnel(); /* tunnel_width; */
+      
+      $('img.left_wall').each(function(i){
+        $(this).css('left',''+left_wall[i]+'px');
+      });
+      
+      $("img.right_wall").each(function(i){
+        $(this).css('left',''+right_wall[i]+'px');
+      });      
+      
+      /* shrink tunnel width */
+      if(tunnelGame.widthTunnel() >= 120) { /*tunnel_width*/
+        c_w++;
+        if(c_w>100) {
+          c_w = 0;
+          tunnelGame.shrinkTunnel();
+          /*tunnel_width-=20;*/
+          left_wall[0]+=10;
+        }
+      }
+      
+      /* incrementing score */
+      c_s++;
+      
+      if(c_s>20) {
+        c_s = 0;
+        tunnelGame.incScore();
+        /*score = $('span#score').text();
+        score++;*/
+        $('span#score').text(''+tunnelGame.getScore()); /* score */
+      }
+      
+      /* checking collision */
+      if(ship_x<=left_wall[18]+20 || ship_x+32>=right_wall[18]) {
+        /* alive = 0; */
+        tunnelGame.killPlayer();
+      }
+      
+      /* running game logic repeatedly */
+      if(tunnelGame.checkLife()) { /* alive == 1 */
+        setTimeout('updateTunnel()',10);
+      }
+      else {
+      
+        /* $('input#player_score').val($('span#score').text()); */
+        
+        $('img#ship').fadeOut('slow');
+        
+        $('img.left_wall').css('display','none');
+        
+        $('img.right_wall').css('display','none');        
+        
+        showHighScores();
+        
+      }
+      
+    }
+    
+    function scoreUpdate() {
+    
+      $('form#high_score').submit(function(){
+        
+        var player_name = $('input#player_name').val();
+        
+        var xyz = $('input#ts').val();
+        
+        if(player_name.length>0) {
+          
+          $(this).css('display','none');
+          
+          showHighScores();              
+        }
+        else {
+          alert("Please enter a name!");
+        }
+        
+        return false;
+        
+      });
+      
+      $('form#high_score').css('display','block');
+      
+    }
+    
+    function showHighScores() {
+      $('div#score_table').css('display','block');  
+    }
+    
+    $(document).ready(function(){
+      
+      // secure token for submitting data
+      $('fieldset#high_score_field').append('<input type="hidden" id="ts" name="ts" value="aa">');
+      
+      // show start message
+      $('p#welcome').css('display','block');
+      
+      $('p#welcome').click(function(){
+        
+        $('p#welcome').css('display','none');
+        initTunnel();
+        updateTunnel();
+        
+      });     
+      
+    });
+    
+    /* checks movement relative to game container */
+    $(document).mousemove(function(e){ pos_x = e.pageX - rail_left; });
+    
+  </script>
+</head>
+
+<body>
+
+  <div id="tunnel" style="background-position: 50% 4px;">
+  
+    <img id="ship" width="32" height="32" alt="A" src="./assets/ship.gif" style="left: 426px; ">
+    
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 0px; display: none; left: 80px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 25px; display: none; left: 83px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 50px; display: none; left: 86px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 75px; display: none; left: 89px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 100px; display: none; left: 92px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 125px; display: none; left: 95px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 150px; display: none; left: 98px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 175px; display: none; left: 101px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 200px; display: none; left: 104px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 225px; display: none; left: 107px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 250px; display: none; left: 110px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 275px; display: none; left: 113px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 300px; display: none; left: 116px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 325px; display: none; left: 119px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 350px; display: none; left: 122px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 375px; display: none; left: 125px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 400px; display: none; left: 128px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 425px; display: none; left: 131px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 450px; display: none; left: 134px;">
+    <img class="left_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 475px; display: none; left: 137px;">
+    
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 0px; display: none; left: 400px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 25px; display: none; left: 403px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 50px; display: none; left: 406px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 75px; display: none; left: 409px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 100px; display: none; left: 412px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 125px; display: none; left: 415px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 150px; display: none; left: 418px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 175px; display: none; left: 421px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 200px; display: none; left: 424px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 225px; display: none; left: 427px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 250px; display: none; left: 430px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 275px; display: none; left: 433px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 300px; display: none; left: 436px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 325px; display: none; left: 439px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 350px; display: none; left: 442px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 375px; display: none; left: 445px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 400px; display: none; left: 448px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 425px; display: none; left: 451px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 450px; display: none; left: 454px;">
+    <img class="right_wall" width="20" height="25" alt="|" src="./assets/wall.gif" style="top: 475px; display: none; left: 457px;">
+    
+    <p id="welcome" class="message" style="display: none;">点击开始，移动鼠标躲避.</p>
+    
+    <div id="score_table" class="display" style="display: none;">
+    	Game Over
+      <p id="game_over">点击重新开始</p>
+    
+    </div>
+    
+  </div>
+  
+  <div id="info">
+  
+    <div id="info_score">得分: <span id="score">2</span></div>
+    
+  </div>
+
+	<p id="footer" style="background: #fff;border-top: 1px solid #ebebeb;bottom: 0;margin: 0;padding: 1em 44px;position: fixed;width: 100%;z-index: 3;">
+			<a href="http://longzuyuan.cn" style="color:grey;text-decoration: none;font-size: .9em;">我的首页</a>
+			<a href="../snake/index.html" style="color:blue;text-decoration: none;font-size: .9em;margin-left:20px">贪吃蛇</a>
+			<a href="../tetris/index.html" style="color:blue;text-decoration: none;font-size: .9em;margin-left:20px">俄罗斯方块</a>
+			<a href="../mine/index.html" style="color:blue;text-decoration: none;font-size: .9em;margin-left:20px">扫雷</a>
+			<a href="../tunnel/index.html" style="color:blue;text-decoration: none;font-size: .9em;margin-left:20px">飞机通道</a>
+	</p>
+    <div style="display:none">
+	    <script src="http://s13.cnzz.com/stat.php?id=5779441&web_id=5779441" language="JavaScript"></script>
+		</div>
+</body></html>

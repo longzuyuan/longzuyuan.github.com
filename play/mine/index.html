@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+	<title>扫雷 - 小游戏</title>
+	<style type="text/css">
+		
+		body.caution {
+			cursor: help ;
+			}
+		
+		table.mine-sweeper {margin:0 auto}
+		
+		table.mine-sweeper td {
+			background-color: #F0F0F0 ;
+			border: 1px solid #333333 ;
+			cursor: pointer ;
+			height: 25px ;
+			line-height: 25px ;
+			overflow: hidden ;
+			text-align: center ;
+			width: 25px ;
+			}
+		
+		table.mine-sweeper td.active {
+			background-color: #D8D8D8 ;
+			}
+	
+		table.mine-sweeper td.bomb {
+			font-weight: bold ;
+			}
+			
+		table.mine-sweeper td.bombed {
+			background-color: #FFD0D0 ;
+			color: #CC0000 ;
+			font-weight: bold ;
+			}
+			
+		table.mine-sweeper td.caution {
+			background-color: #FFD0D0 ;
+			color: #CC0000 ;
+			font-weight: bold ;
+			}
+	
+	</style>
+	<script type="text/javascript" src="./assets/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="./assets/jquery.randrange.js"></script>
+	<script type="text/javascript" src="./assets/jquery.repeatstring.js"></script>
+	<script type="text/javascript" src="./assets/jquery.randomfilter.js"></script>
+	<script type="text/javascript" src="./assets/jquery.near.js"></script>
+	<script type="text/javascript" src="./assets/jquery.minesweeper.js"></script>
+	
+		<script type="text/javascript">
+		
+			// When the DOM is ready, build the mine sweeper game.
+			jQuery(function( $ ){
+			
+				var mineSweerper = new MineSweeper(
+					$( "table.mine-sweeper" ),
+					10,
+					10,
+					
+						"10%"
+					
+				);
+			
+			});
+			
+		</script>
+	
+</head>
+<body style="margin: 0;">
+	<p style="text-align:center">不要点到雷！</p>
+	<table cellspacing="2" class="mine-sweeper">
+	<tbody>
+	<tr>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	</tr>
+	<tr>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active bomb">&nbsp;</td>
+	</tr>
+	<tr>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	</tr>
+	<tr>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active bomb">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	</tr>
+	<tr>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active bomb">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	</tr>
+	<tr>
+	<td class="active bomb">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active bomb">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	</tr>
+	<tr>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active bomb">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active bomb">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	</tr>
+	<tr>
+	<td class="active">&nbsp;</td>
+	<td class="active bomb">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active bomb">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	</tr>
+	<tr>
+	<td class="active">&nbsp;</td>
+	<td class="active bomb">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	</tr>
+	<tr>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	<td class="active">&nbsp;</td>
+	</tr>
+	</tbody>
+	</table>
+
+	<p id="footer" style="background: #fff;border-top: 1px solid #ebebeb;bottom: 0;margin: 0;padding: 1em 44px;position: fixed;width: 100%;z-index: 3;">
+			<a href="http://longzuyuan.cn" style="color:grey;text-decoration: none;font-size: .9em;">我的首页</a>
+			<a href="../snake/index.html" style="color:blue;text-decoration: none;font-size: .9em;margin-left:20px">贪吃蛇</a>
+			<a href="../tetris/index.html" style="color:blue;text-decoration: none;font-size: .9em;margin-left:20px">俄罗斯方块</a>
+			<a href="../mine/index.html" style="color:blue;text-decoration: none;font-size: .9em;margin-left:20px">扫雷</a>
+			<a href="../tunnel/index.html" style="color:blue;text-decoration: none;font-size: .9em;margin-left:20px">飞机通道</a>
+	</p>
+    <div style="display:none">
+	    <script src="http://s13.cnzz.com/stat.php?id=5779441&web_id=5779441" language="JavaScript"></script>
+		</div>
+</body></html>

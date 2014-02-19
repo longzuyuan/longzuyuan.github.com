@@ -1,11 +1,11 @@
-(function() {
+ï»¿(function() {
     var boolYes = !0, boolNo = !1;
     window.long = window.long || {};
 				var counter, isIE = 0 <= navigator.userAgent.indexOf("MSIE"), allModel = {},
-        allButton = { //ËùÓĞÍ¼Æ¬Êı×é
+        allButton = { //æ‰€æœ‰å›¾ç‰‡æ•°ç»„
             "button1": {
                 picture: "toolbar.png",
-                text: "¹¤ ×÷",
+                text: "å·¥ ä½œ",
                 url: "work/",
                 left: 31,
                 top: 35,
@@ -27,7 +27,7 @@
             },
             "button2": {
                 picture: "toolbar.png",
-                text: "Éú »î",
+                text: "ç”Ÿ æ´»",
                 url: "life/",
                 left: 31,
                 top: 35,
@@ -49,7 +49,7 @@
             },
             "button3": {
                 picture: "toolbar.png",
-                text: "Ïî Ä¿",
+                text: "é¡¹ ç›®",
                 url: "project/",
                 left: 131,
                 top: 35,
@@ -71,7 +71,7 @@
             },
             "button4": {
                 picture: "toolbar.png",
-                text: "²© ¿Í",
+                text: "åš å®¢",
                 url: "http://blog.csdn.net/longzuyuan",
                 left: 131,
                 top: 35,
@@ -115,7 +115,7 @@
             },
             "button6": {
                 picture: "toolbar.png",
-                text: "ĞË È¤",
+                text: "å…´ è¶£",
                 url: "interest/",
                 left: 131,
                 top: 35,
@@ -137,7 +137,7 @@
             },
             "button7": {
                 picture: "toolbar.png",
-                text: "Æä Ëü",
+                text: "å…¶ å®ƒ",
                 url: "others/",
                 left: 131,
                 top: 35,
@@ -179,7 +179,7 @@
                 this.over ? this.frame = 0 : this.frame = 5;
             }
         };
-        //ÊÇ·ñÕıÔÚ²¥·Å
+        //æ˜¯å¦æ­£åœ¨æ’­æ”¾
         model.prototype.isPlaying = function() {
             return this.playing
         };
@@ -193,23 +193,23 @@
                 //this.w()
             }
         };
-        //ÉèÖÃÔªËØµÄ±³¾°Í¼Æ¬Î»ÖÃbackgroundPosition
+        //è®¾ç½®å…ƒç´ çš„èƒŒæ™¯å›¾ç‰‡ä½ç½®backgroundPosition
         var setBackgroundPosttion = function(elem, x, y) {
             elem.style.backgroundPosition = -x + "px -" + y + "px"
         },
-        //¼ì²éÊÇ·ñ¶¨Òå
+        //æ£€æŸ¥æ˜¯å¦å®šä¹‰
         isDefined = function(obj) {
             return typeof obj != "undefined";
         },
         doNothing = function() {},
-        //Êó±êÒÆ½øÒÆ³öÊÂ¼ş
+        //é¼ æ ‡ç§»è¿›ç§»å‡ºäº‹ä»¶
         mouseOverOrOut = function(divName, isOver) {
         		counter = 0;
             var model = allModel[divName];
             model.over = isOver; 
             if(isOver) model.element.innerHTML = "<span>" + model.text + "</span>";
             else model.element.innerHTML = "";
-            if (!model.stopMouseEvent) { //¶¯»­»¹Ã»Æô¶¯£¬ÔòÆô¶¯
+            if (!model.stopMouseEvent) { //åŠ¨ç”»è¿˜æ²¡å¯åŠ¨ï¼Œåˆ™å¯åŠ¨
                 model.start(void 0);
                 if (!long.isInit) {
                     long.isInit = boolYes;
@@ -217,7 +217,7 @@
                 }
             }
         },
-        //µ¥»÷ÊÂ¼ş
+        //å•å‡»äº‹ä»¶
         clickEvent = function(divName) { 
             var btn = allButton[divName];
             if(btn.url) {
@@ -238,23 +238,23 @@
             	}
             }
         },
-        //¿ªÆôËùÓĞÊó±êÊÂ¼ş¿ª¹Ø
+        //å¼€å¯æ‰€æœ‰é¼ æ ‡äº‹ä»¶å¼€å…³
         openMouseEvent = function() {
             for (var a in allButton) allButton[a].stopMouseEvent = boolNo;
         },
-        //ÎªobjElement°ó¶¨ÊÂ¼ş£¬ÊÂ¼şÃû:eventName£¬´¥·¢º¯ÊıcallFunction
+        //ä¸ºobjElementç»‘å®šäº‹ä»¶ï¼Œäº‹ä»¶å:eventNameï¼Œè§¦å‘å‡½æ•°callFunction
         bindEvent = function(objElement, eventName, callFunction) {
             if (objElement) {
                 objElement.addEventListener ? objElement.addEventListener(eventName, callFunction, boolNo)
                 		 : objElement.attachEvent("on" + eventName, callFunction);
             }
         },
-        //ÎªobjElement×¢ÏúÊÂ¼ş£¬ÊÂ¼şÃû:eventName
+        //ä¸ºobjElementæ³¨é”€äº‹ä»¶ï¼Œäº‹ä»¶å:eventName
         cancelEvent = function(objElement, eventName, b) {
             objElement && (objElement.removeEventListener ? objElement.removeEventListener(eventName, b, boolNo) : objElement.detachEvent("on" + eventName, b))
         },
         start = function() {
-            //hplogo´æÔÚ ²¢ÇÒ doodleÃ»³õÊ¼»¯
+            //hplogoå­˜åœ¨ å¹¶ä¸” doodleæ²¡åˆå§‹åŒ–
             if (document.getElementById("button_bar") && !long.isInit) {
               long.isInit = boolNo;
         			bindEvent(document, "mousemove", doNothing);
@@ -262,7 +262,7 @@
                   var arrOneImg = allButton[btn],
                   imgDiv = document.getElementById(btn);
                   if (!imgDiv) throw "Invalid ID: " + btn;
-                  arrOneImg.picture && setBackgroundPosttion(imgDiv, arrOneImg.positionX || 0, arrOneImg.positionY || 0); //ÓĞpicture
+                  arrOneImg.picture && setBackgroundPosttion(imgDiv, arrOneImg.positionX || 0, arrOneImg.positionY || 0); //æœ‰picture
                   if (isDefined(arrOneImg.left)) imgDiv.style.left = (arrOneImg.left || 0) + "px";
                   if (isDefined(arrOneImg.top)) imgDiv.style.top = (arrOneImg.top || 0) + "px";
                   if (arrOneImg.width) imgDiv.style.width = (arrOneImg.D || arrOneImg.width || 0) + "px";
@@ -291,7 +291,7 @@
     try {
         longzy.doodle || (longzy.doodle = {});
         var k, l, isIE = 0 <= navigator.userAgent.indexOf("MSIE"),
-        allIMG = { //ËùÓĞÍ¼Æ¬Êı×é
+        allIMG = { //æ‰€æœ‰å›¾ç‰‡æ•°ç»„
             "logo-gumby-loop": {
                 picture: "gumby.jpg",
                 left: 0,
@@ -350,7 +350,7 @@
                 this.frame = 0
             }
         };
-        //ÊÇ·ñÕıÔÚ²¥·Å
+        //æ˜¯å¦æ­£åœ¨æ’­æ”¾
         model.prototype.isPlaying = function() {
             return this.playing
         };
@@ -370,7 +370,7 @@
                 this.w()
             }
         };
-        //µ¥»÷ÊÂ¼ş
+        //å•å‡»äº‹ä»¶
         var clickEvent = function(divName) {
             if (!allIMG[divName].stopMouseEvent) {
                 k = 0; (divName = l[divName]) && divName.start(void 0);
@@ -380,11 +380,11 @@
                 }
             }
         },
-        //¿ªÆôËùÓĞÊó±êÊÂ¼ş¿ª¹Ø
+        //å¼€å¯æ‰€æœ‰é¼ æ ‡äº‹ä»¶å¼€å…³
         openMouseEvent = function() {
             for (var a in allIMG) allIMG[a].stopMouseEvent = boolNo
         },
-        //²¥·Å¶¯»­
+        //æ’­æ”¾åŠ¨ç”»
         playAnimate = function() {
             if (longzy.doodle.isInit) {
                 for (var a in l) {
@@ -402,7 +402,7 @@
         frame = function(name, arr, b, e, i) {
             model.call(this, name);
             this.v = arr;
-            this.frames = this.v.length; //Ö¡
+            this.frames = this.v.length; //å¸§
             this.s = b || {}; //
             this.C = e || -1;
             this.z = i || -1
@@ -425,7 +425,7 @@
         };
         frame.prototype.animate = function() {
             this.frame++;
-            if (this.frame == this.frames) { //ÒÑµ½×îºóÒ»Ö¡
+            if (this.frame == this.frames) { //å·²åˆ°æœ€åä¸€å¸§
                 this.playing = boolNo;
                 allIMG[this.id].stopMouseEvent = boolNo;
                 this.element.style.cursor = "pointer"
@@ -436,26 +436,26 @@
                 this.w()
             }
         };
-        //ÉèÖÃÔªËØµÄ±³¾°Í¼Æ¬Î»ÖÃbackgroundPosition
+        //è®¾ç½®å…ƒç´ çš„èƒŒæ™¯å›¾ç‰‡ä½ç½®backgroundPosition
         var setBackgroundPosttion = function(elem, x, y) {
             elem.style.backgroundPosition = -x + "px -" + y + "px"
         },
-        //¼ì²éÊÇ·ñ¶¨Òå
+        //æ£€æŸ¥æ˜¯å¦å®šä¹‰
         isDefined = function(obj) {
             return typeof obj != "undefined";
         },
         doNothing = function() {},
-        //Êó±êÒÆ½øÒÆ³öÊÂ¼ş
+        //é¼ æ ‡ç§»è¿›ç§»å‡ºäº‹ä»¶
         mouseOverOrOut = function(eleName, isOver) {
             var oneImg = allIMG[eleName];
             oneImg.stopMouseEvent || setBackgroundPosttion(document.getElementById(eleName), oneImg.positionX + (isOver ? oneImg.width: 0), oneImg.positionY)
         },
-        //µ¥»÷ÊÂ¼ş
+        //å•å‡»äº‹ä»¶
         clickHoldEvent = function(divName, holdDivName, callClick) {
             divName != "logo-gumby-loop" && (s = boolYes);
             var e = allIMG[divName],
             newImg = document.createElement("img");
-            //Í¼Æ¬¼ÓÔØÍê³ÉºóÏÔÊ¾div£¬Òş²Øhold div£¬µ÷ÓÃdiv clickÊÂ¼ş
+            //å›¾ç‰‡åŠ è½½å®Œæˆåæ˜¾ç¤ºdivï¼Œéšè—hold divï¼Œè°ƒç”¨div clickäº‹ä»¶
             newImg.onload = function() {
                 var e = allIMG[divName],
                 div = document.getElementById(divName),
@@ -467,7 +467,7 @@
             };
             newImg.src = "./images/gumby11-" + e.picture
         },
-        //ÎªobjElement°ó¶¨ÊÂ¼ş£¬ÊÂ¼şÃû:eventName£¬´¥·¢º¯ÊıcallFunction
+        //ä¸ºobjElementç»‘å®šäº‹ä»¶ï¼Œäº‹ä»¶å:eventNameï¼Œè§¦å‘å‡½æ•°callFunction
         bindEvent = function(objElement, eventName, callFunction) {
             if (objElement) {
                 if (!longzy.doodle.p) longzy.doodle.p = [];
@@ -476,21 +476,21 @@
                 		 : objElement.attachEvent("on" + eventName, callFunction);
             }
         },
-        //ÎªobjElement×¢ÏúÊÂ¼ş£¬ÊÂ¼şÃû:eventName
+        //ä¸ºobjElementæ³¨é”€äº‹ä»¶ï¼Œäº‹ä»¶å:eventName
         cancelEvent = function(objElement, eventName, b) {
             objElement && (objElement.removeEventListener ? objElement.removeEventListener(eventName, b, boolNo) : objElement.detachEvent("on" + eventName, b))
         },
-        //Èë¿Ú
+        //å…¥å£
         startClokey = function() {
             if (longzy.rein && longzy.dstr && !longzy.doodle.B) {
                 longzy.doodle.B = boolYes;
                 longzy.rein.push(D);
                 longzy.dstr.push(F)
             }
-            //hplogo´æÔÚ ²¢ÇÒ doodleÃ»³õÊ¼»¯
+            //hplogoå­˜åœ¨ å¹¶ä¸” doodleæ²¡åˆå§‹åŒ–
             if (document.getElementById("hplogo") && !longzy.doodle.isInit) {
                 longzy.doodle.isInit = boolYes;
-                //ÊÇIE
+                //æ˜¯IE
                 if (isIE) try {
                     document.execCommand("BackgroundImageCache", boolNo, boolYes)
                 } catch(a) {}
@@ -503,7 +503,7 @@
                     var arrOneImg = allIMG[imgDivId],
                     imgDiv = document.getElementById(imgDivId);
                     if (!imgDiv) throw "Invalid ID: " + imgDivId;
-                    arrOneImg.picture && setBackgroundPosttion(imgDiv, arrOneImg.positionX || 0, arrOneImg.positionY || 0); //ÓĞpicture
+                    arrOneImg.picture && setBackgroundPosttion(imgDiv, arrOneImg.positionX || 0, arrOneImg.positionY || 0); //æœ‰picture
                     if (isDefined(arrOneImg.left)) imgDiv.style.left = (arrOneImg.left || 0) + "px";
                     if (isDefined(arrOneImg.top)) imgDiv.style.top = (arrOneImg.top || 0) + "px";
                     if (arrOneImg.width) imgDiv.style.width = (arrOneImg.D || arrOneImg.width || 0) + "px";
@@ -531,7 +531,7 @@
                 clickHoldEvent("logo-gumby-loop", "logo-gumby-hold", boolYes)
             }
         };
-        //¿ªÊ¼
+        //å¼€å§‹
         startClokey();
     } catch(G) {
         longzy.ml(G, boolNo, {

@@ -496,3 +496,10 @@ b,strong {
 	color: #000;
 	font-weight: bold
 }
+ol li {
+	margin: 20px;
+}
+ol li a {
+	display: inline-block;
+	margin: 0 20px 0 0;
+}

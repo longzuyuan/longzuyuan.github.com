@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  *
  * jquery.snake.js - a nibbles clone
  * Copyright (c) 2008 Richard Willis
@@ -97,8 +97,8 @@ var Snake = {
 		Snake.$cherry.hide();
 
 		// update map message	
-		$("#map-msg").hide().html('µÚ'+Snake.level+'¹Ø<br/>³Ô<strong>'+Level[Snake.level][0].cherries+'</strong>¸ö<small><br/>'+
-			'<small style="font-size:80%">(»¹Ê£<strong>'+Snake.lives+'</strong>'+(Snake.lives>1?'':'')+'´Î»ú»á)</small></small>'
+		$("#map-msg").hide().html('ç¬¬'+Snake.level+'å…³<br/>åƒ<strong>'+Level[Snake.level][0].cherries+'</strong>ä¸ª<small><br/>'+
+			'<small style="font-size:80%">(è¿˜å‰©<strong>'+Snake.lives+'</strong>'+(Snake.lives>1?'':'')+'æ¬¡æœºä¼š)</small></small>'
 			).fadeIn(500, function(){
 
 			setTimeout(function(){
@@ -277,7 +277,7 @@ var Snake = {
 			clearInterval(Snake.animateTimer);
 			Snake.animateTimer = 0;
 			Snake.$overlay.show();
-			$("#map-msg").html("<br/>ÔİÍ£").fadeIn();
+			$("#map-msg").html("<br/>æš‚åœ").fadeIn();
 		}
 	},
 
@@ -287,13 +287,13 @@ var Snake = {
 			Snake.newGame();
 		} else {
 			Snake.pause();
-			$("#map-msg").html('<br/>Ä¾ÓĞÁË:(<small><br/><a href="javascript:;" onclick="Snake.newGame(true)">ÔÙÊÔÒ»´Î?</a></small>');
+			$("#map-msg").html('<br/>æœ¨æœ‰äº†:(<small><br/><a href="javascript:;" onclick="Snake.newGame(true)">å†è¯•ä¸€æ¬¡?</a></small>');
 		}
 	},
 
 	finishedGame : function(){
 		Snake.pause();
-		$("#map-msg").html('<br/>Å¶Ò®£¡Í¨¹ØÀ²£¡<small><br/><a href="http://longzuyuan.cn" target="_blank">Longzuyuan.cn</a></small>');
+		$("#map-msg").html('<br/>å“¦è€¶ï¼é€šå…³å•¦ï¼<small><br/><a href="http://longzuyuan.cn" target="_blank">Longzuyuan.cn</a></small>');
 	},
 
 	Cherry : {	

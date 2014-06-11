@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * Tetris with jQuery - 2006/06/25
  *   see: http://en.wikipedia.org/wiki/Category:Tetris
  *        http://en.wikipedia.org/wiki/Tetris_Worlds
@@ -84,7 +84,7 @@ var tetris = {
 			[1,0,0,0,0,0,0,0,0,0,0,1],[1,0,0,0,0,0,0,0,0,0,0,1],
 			[1,1,1,1,1,1,1,1,1,1,1,1]];
 		$('#grid td').css('backgroundColor', tetris.colors[0]);
-		$('#start').unclick(tetris.start).val('ÔİÍ£').click(tetris.pause);
+		$('#start').unclick(tetris.start).val('æš‚åœ').click(tetris.pause);
 		$('#stop').set('disabled', false);
 		$(tetris.bound).keypress(tetris.key);
 		tetris.next = tetris.newShape();
@@ -145,14 +145,14 @@ var tetris = {
 		$(tetris.bound).unkeypress(tetris.key);
 		window.clearInterval(tetris.timer);
 		tetris.timer = null;
-		$('#start').unclick(tetris.pause).val('»Ö¸´').click(tetris.resume);
+		$('#start').unclick(tetris.pause).val('æ¢å¤').click(tetris.resume);
 	},
 
 	// Resume the game
 	resume: function() {
 		$(tetris.bound).keypress(tetris.key);
 		tetris.timer = window.setInterval(tetris.moveDown, tetris.duration);
-		$('#start').unclick(tetris.resume).val('ÔİÍ£').click(tetris.pause);
+		$('#start').unclick(tetris.resume).val('æš‚åœ').click(tetris.pause);
 	},
 
 	// Stop the game
@@ -163,9 +163,9 @@ var tetris = {
 			$(tetris.bound).unkeypress(tetris.key);
 			window.clearInterval(tetris.timer);
 			tetris.timer = null;
-			$('#start').unclick(tetris.pause).val('¿ªÊ¼').click(tetris.start);
+			$('#start').unclick(tetris.pause).val('å¼€å§‹').click(tetris.start);
 		} else {
-			$('#start').unclick(tetris.resume).val('¿ªÊ¼').click(tetris.start);
+			$('#start').unclick(tetris.resume).val('å¼€å§‹').click(tetris.start);
 		}
 		$('#stop').set('disabled', true);
 		// Draw everything in white

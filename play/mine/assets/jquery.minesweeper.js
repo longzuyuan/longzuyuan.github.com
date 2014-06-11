@@ -1,4 +1,4 @@
-
+О╩©
 (function( $ ){
 
 	// I am the controller for the mine sweeper game.
@@ -70,7 +70,7 @@
 		if (this.bombCells.filter( ".bombed" ).size()){
 			
 			// Set the message.
-			message = "д╬спак :( тыйтр╩╢н?";
+			message = "Ф°╗Ф°┴Д╨├ :( Е├█Х╞∙Д╦─Ф╛║?";
 			
 			// Flag the end game.
 			isEndGame = true;
@@ -81,7 +81,7 @@
 		} else if (!this.nonBombCells.filter( ".active" ).size()){
 		
 			// Set the message.
-			message = "мЙЁиак :) тыйтр╩╢н?";
+			message = "Е╝▄Ф┬░Д╨├ :) Е├█Х╞∙Д╦─Ф╛║?";
 			
 			// Flag the end game.
 			isEndGame = true;

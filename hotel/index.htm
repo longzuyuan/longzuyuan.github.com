@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=10">
+<title>6+1连锁酒店</title>
+<link href="./assets/regcss.css" rel="stylesheet" type="text/css">
+<link href="./assets/bootstrap.min.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="./assets/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="./assets/common.js"></script>
+
+<style>@media print{#eft58aup1ho4unmi{display:none}}</style>
+</head>
+
+<body>
+<center>
+  <div id="regtop">
+    <div class="logo"><img src="./images/logo01.gif" width="213" height="82"></div>
+  </div>
+  <!--top end-->
+  
+  <div id="reg101">
+    <div class="left"><img src="./images/rge01_02.jpg"></div>
+    <div class="right"><img src="./images/rge01_04.jpg"></div>
+    <form name="form" id="form" onsubmit="return checkreg();" method="post" action="register.htm">
+		  <div class="regtx">
+		    <div id="regtit01">
+		    	<span class="f20 yellow1 bold">注册会员有惊喜</span><br>
+		      <span class="f18 yellow2 bold">立享77元住五星级大床房</span>
+		    </div>
+		    <div class="regcon01">
+		      <ul>
+		        <li><span class="regcontext">姓名</span>
+		          <input type="text" name="username" id="username" value="" size="22">
+		        </li>
+		        <li><span class="regcontext">手机号码</span>
+		          <input type="text" name="mobile" id="mobile" onkeyup="this.value=this.value.replace(/\D/g,&#39;&#39;); $(&#39;#wmobile&#39;).val(this.value)" onafterpaste="this.value=this.value.replace(/\D/g,&#39;&#39;)" onblur="setLeaveMsg(this, 1);" onfocus="cleanLeaveMsg(this, 1);" size="22" style="color: rgb(153, 153, 153);">
+		        </li>
+		        <li><span class="regcontext">安全邮箱</span>
+		          <input type="text" name="email" id="email" value="" onblur="setLeaveMsg(this, 3);" onfocus="cleanLeaveMsg(this, 3);" size="22" style="color: rgb(153, 153, 153);">
+		        </li>
+		        <li><span class="regcontext">身份证号</span>
+		          <input type="text" name="cardno" id="cardno">
+		        </li>
+		        <li><span class="regcontext" style="float:left; line-height:30px;">验证码</span>
+		              <input name="verify" id="verify" type="text" maxlength="6" style="float: left; width: 60px; margin-left: 5px; color: rgb(153, 153, 153);" onblur="setLeaveMsg(this, 2);" onfocus="cleanLeaveMsg(this, 2);">
+		          <label id="lbl_verify" style="float:left; margin-left:8px;"></label>
+		        </li>
+		      </ul>
+		    </div>
+		    <div class="regcontext2"></div>
+		    <div class="regcontext2 hui1">
+		      <input type="checkbox" name="readbox" id="readbox" value="1" checked="checked">
+		      已阅读并同意6+1连锁酒店<strong style="cursor:pointer" id="isread">隐私条款</strong> 
+		    </div>
+		    <div class="regconbtn"><a style="cursor:pointer" onclick="$(&#39;form&#39;).submit();"><img src="./images/regbtn1.png" width="156" height="34" border="0"></a></div>
+		    <div class="regcontext2 login"><a href="#" class="org">我是会员，点此登录</a></div>
+		  </div>
+		</form>
+		
+		<link rel="stylesheet" type="text/css" href="./assets/tipswindown.css">
+		<script type="text/javascript" src="./assets/validate.js"></script> 
+		<script type="text/javascript" src="./assets/tipswindown.js"></script> 
+		<script type="text/javascript" src="./assets/register.js"></script>
+		
+		<div id="agreement" style="display:none;">
+		  <iframe src="./assets/agreement.htm" frameborder="0" height="320px" width="100%"></iframe>
+		  <div style="text-align:center;height:35px; padding-top:10px;background:#ECF9FF;">
+		    <input type="button" id="confirmAgree" value="" class="confirmBtn" onclick="confirmBtn();">
+		  </div>
+		</div>
+		 
+    <!--regtx end--> 
+  </div>
+  <!--reg101 end -->
+  <div id="reg102"></div>
+  <div id="reg103"></div>
+  <div id="reg104"></div>
+  <div id="reg105"></div>
+  <div id="reg106"> 官网预订：www.6+1inn.cn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  		客服热线：07974640083 18664937831 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  		<a href="#" class="hui">微信预订 （搜“6+1酒店”）</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  		<a href="#" class="hui">手机版：m.6+1inn.cn&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手机客户端</a> 
+  </div>
+</center>
+
+<div id="footer-et" style="font-size:1px;display:none;"> </div>
+
+<div id="errorMsg" class="tooltip fade right in" style="display: none;position:absolute;">
+	<div class="tooltip-arrow"></div>
+	<div id="msgVal" class="tooltip-inner"></div>
+</div>
+
+</body>
+</html>
